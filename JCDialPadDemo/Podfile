@@ -1,0 +1,6 @@
+platform :ios, '5.0'
+
+pod 'JCDialPad', :path => '..'
+podspec :path => '../JCDialPad.podspec'
+
+pod 'FontasticIcons'
