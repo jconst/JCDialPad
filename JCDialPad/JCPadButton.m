@@ -55,6 +55,7 @@
     if (self = [self initWithMainLabel:@"" subLabel:sub]) {
         self.input = input;
         self.iconView = iconView;
+        self.iconView.userInteractionEnabled = NO;
     }
     return self;
 }
