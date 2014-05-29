@@ -15,8 +15,8 @@
 @property (nonatomic, strong) UIView* backgroundBlurringView;
 @property (nonatomic, strong) NBAsYouTypeFormatter *numFormatter;
 
-
 @end
+
 
 @implementation JCDialPad
 
@@ -99,15 +99,15 @@
 	{
 		if(self.backgroundBlurringView == nil)
 		{
-			if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+			if (IS_IOS6_OR_LOWER)
 			{
-				self.backgroundBlurringView = [[UINavigationBar alloc] initWithFrame:self.bounds];
-				[(UINavigationBar*)self.backgroundBlurringView setBarStyle: UIBarStyleBlack];
+                self.backgroundBlurringView = [[UIView alloc] initWithFrame:self.bounds];
+				self.backgroundBlurringView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
 			}
 			else
 			{
-				self.backgroundBlurringView = [[UIView alloc] initWithFrame:self.bounds];
-				self.backgroundBlurringView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+				self.backgroundBlurringView = [[UINavigationBar alloc] initWithFrame:self.bounds];
+				[(UINavigationBar*)self.backgroundBlurringView setBarStyle: UIBarStyleBlack];
 			}
 			self.backgroundBlurringView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 			[self insertSubview:self.backgroundBlurringView belowSubview:self.contentView];
@@ -138,7 +138,7 @@
 - (void)appendText:(NSString *)text
 {
     if (text.length) {
-        self.rawText = [self.rawText stringByAppendingString:text];
+        _rawText = [self.rawText stringByAppendingString:text];
         NSString *formatted = self.rawText;
         if (self.formatTextToPhoneNumber) {
             [self.numFormatter inputDigit:text];
@@ -152,7 +152,7 @@
 
 - (void)didTapDeleteButton:(UIButton *)sender
 {
-    self.rawText = [self.rawText substringToIndex:self.rawText.length - 1];
+    _rawText = [self.rawText substringToIndex:self.rawText.length - 1];
     NSString *formatted = self.rawText;
     if (self.formatTextToPhoneNumber) {
         [self.numFormatter removeLastDigit];
@@ -277,15 +277,6 @@
 
 #pragma mark -
 #pragma mark -  View Methods
-- (UILabel *)standardLabel
-{
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-    label.textColor = self.labelColor;
-    label.backgroundColor = [UIColor clearColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    
-    return label;
-}
 
 - (void)setRoundedView:(UIView *)roundedView toDiameter:(CGFloat)newSize;
 {

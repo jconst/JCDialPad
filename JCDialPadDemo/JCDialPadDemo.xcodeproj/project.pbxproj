@@ -13,10 +13,10 @@
 		86F924311936B7A6007C3772 /* ExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F9242F1936B7A6007C3772 /* ExampleViewController.xib */; };
 		86F924361936B7E6007C3772 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F924341936B7E6007C3772 /* main.m */; };
 		86F924381937A9AE007C3772 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86F924371937A9AE007C3772 /* Default-568h@2x.png */; };
+		86F9243A1937AFF7007C3772 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86F924391937AFF7007C3772 /* Images.xcassets */; };
 		9C79B0D8188A184A00D465D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C79B0D7188A184A00D465D8 /* Foundation.framework */; };
 		9C79B0DA188A184A00D465D8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C79B0D9188A184A00D465D8 /* CoreGraphics.framework */; };
 		9C79B0DC188A184A00D465D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C79B0DB188A184A00D465D8 /* UIKit.framework */; };
-		9C79B0EA188A184A00D465D8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C79B0E9188A184A00D465D8 /* Images.xcassets */; };
 		9C79B18B188A1A7100D465D8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C79B0F0188A184A00D465D8 /* XCTest.framework */; };
 		9C79B18C188A1A7100D465D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C79B0D7188A184A00D465D8 /* Foundation.framework */; };
 		9C79B18D188A1A7100D465D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C79B0DB188A184A00D465D8 /* UIKit.framework */; };
@@ -44,11 +44,11 @@
 		86F924331936B7E6007C3772 /* JCDialPadDemo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JCDialPadDemo-Prefix.pch"; path = "JCDialPadDemo/JCDialPadDemo-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		86F924341936B7E6007C3772 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = JCDialPadDemo/main.m; sourceTree = SOURCE_ROOT; };
 		86F924371937A9AE007C3772 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		86F924391937AFF7007C3772 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = JCDialPadDemo/Images.xcassets; sourceTree = "<group>"; };
 		9C79B0D4188A184A00D465D8 /* JCDialPadDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JCDialPadDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C79B0D7188A184A00D465D8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9C79B0D9188A184A00D465D8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9C79B0DB188A184A00D465D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		9C79B0E9188A184A00D465D8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = JCDialPadDemo/Images.xcassets; sourceTree = "<group>"; };
 		9C79B0F0188A184A00D465D8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9C79B18A188A1A7100D465D8 /* JCDialPadDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JCDialPadDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9F7AB5188A40A1004B0B6D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -85,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				86F924371937A9AE007C3772 /* Default-568h@2x.png */,
+				86F924391937AFF7007C3772 /* Images.xcassets */,
 				9C79B0DD188A184A00D465D8 /* JCDialPadDemo */,
 				9C79B0D6188A184A00D465D8 /* Frameworks */,
 				9C79B0D5188A184A00D465D8 /* Products */,
@@ -119,7 +120,6 @@
 			children = (
 				9C79B106188A18A100D465D8 /* Application Bootstrap */,
 				9C79B109188A18A100D465D8 /* Your Modules */,
-				9C79B0E9188A184A00D465D8 /* Images.xcassets */,
 				9C79B0DE188A184A00D465D8 /* Supporting Files */,
 			);
 			name = JCDialPadDemo;
@@ -233,9 +233,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86F9243A1937AFF7007C3772 /* Images.xcassets in Resources */,
 				86F924381937A9AE007C3772 /* Default-568h@2x.png in Resources */,
 				86F924311936B7A6007C3772 /* ExampleViewController.xib in Resources */,
-				9C79B0EA188A184A00D465D8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

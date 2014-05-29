@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) UIColor *labelColor UI_APPEARANCE_SELECTOR;
 
-@property (strong, nonatomic) NSString *rawText;
+@property (strong, nonatomic, readonly) NSString *rawText;
 @property (nonatomic) BOOL formatTextToPhoneNumber;
 
 @property (nonatomic, strong) UIView* backgroundView;
