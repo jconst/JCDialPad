@@ -75,8 +75,7 @@
     self.digitsTextField.borderStyle = UITextBorderStyleNone;
     
     self.formatTextToPhoneNumber = YES;
-    self.numFormatter = [[NBAsYouTypeFormatter alloc] initWithRegionCode:@"US"];
-    _rawText = @"";
+    self.rawText = @"";
 }
 
 #pragma mark -
@@ -155,6 +154,16 @@
             [self.delegate dialPad:self shouldInsertText:button.input forButtonPress:button]) {
             [self appendText:button.input];
         }
+    }
+}
+
+- (void)setRawText:(NSString *)rawText
+{
+    self.numFormatter = [[NBAsYouTypeFormatter alloc] initWithRegionCode:@"US"];
+    _rawText = @"";
+    for (int i = 0; i < rawText.length; ++i) {
+        NSString *c = [self.rawText substringWithRange:NSMakeRange(i, 1)];
+        [self appendText:c];
     }
 }
 
