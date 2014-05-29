@@ -17,16 +17,14 @@
 {
     [super viewDidLoad];
     
-    NSArray *buttons = [[JCDialPad defaultButtons] arrayByAddingObjectsFromArray:@[self.twilioButton, self.callButton]];
-    JCDialPad *dialPad = [[JCDialPad alloc] initWithFrame:self.view.bounds buttons:buttons];
-    dialPad.delegate = self;
+    self.view.buttons = [[JCDialPad defaultButtons] arrayByAddingObjectsFromArray:@[self.twilioButton, self.callButton]];
+    self.view.delegate = self;
     
     UIImageView* backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wallpaper"]];
 	backgroundView.contentMode = UIViewContentModeScaleAspectFill;
-	[dialPad setBackgroundView:backgroundView];
-    dialPad.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	[self.view setBackgroundView:backgroundView];
     
-    [self.view addSubview:dialPad];
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 }
 
 - (JCPadButton *)twilioButton

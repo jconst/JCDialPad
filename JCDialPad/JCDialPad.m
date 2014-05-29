@@ -22,38 +22,61 @@
 
 - (id)initWithFrame:(CGRect)frame buttons:(NSArray *)buttons
 {
-    self = [super initWithFrame:frame];
+    self = [self initWithFrame:frame];
     if (self)
     {
-        [self setDefaultStyles];
-		
-		self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, MIN(frame.size.height, 568.0f))];
-		self.contentView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		self.contentView.center = self.center;
-		[self addSubview:self.contentView];
-        
-        self.deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.deleteButton addTarget:self action:@selector(didTapDeleteButton:) forControlEvents:UIControlEventTouchUpInside];
-        self.deleteButton.titleLabel.font = [UIFont systemFontOfSize:24.0];
-        [self.deleteButton setTitle:@"◀︎" forState:UIControlStateNormal];
-        [self.deleteButton setTitleColor:[UIColor colorWithWhite:1.000 alpha:0.500] forState:UIControlStateHighlighted];
-        self.deleteButton.alpha = 0.0;
-		self.deleteButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-
-        self.digitsTextField = [UITextField new];
-        self.digitsTextField.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:38.0];
-        self.digitsTextField.adjustsFontSizeToFitWidth = YES;
-        self.digitsTextField.enabled = NO;
-        self.digitsTextField.textAlignment = NSTextAlignmentCenter;
-        self.digitsTextField.borderStyle = UITextBorderStyleNone;
-        
-        self.formatTextToPhoneNumber = YES;
-        self.numFormatter = [[NBAsYouTypeFormatter alloc] initWithRegionCode:@"US"];
-        _rawText = @"";
-        
         self.buttons = buttons;
     }
     return self;
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+        [self initializeProperties];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self)
+    {
+        [self initializeProperties];
+    }
+    return self;
+}
+
+- (void)initializeProperties
+{
+    [self setDefaultStyles];
+    
+    self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, MIN(self.height, 568.0f))];
+    self.contentView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    self.contentView.center = self.center;
+    [self addSubview:self.contentView];
+    
+    self.deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.deleteButton addTarget:self action:@selector(didTapDeleteButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.deleteButton.titleLabel.font = [UIFont systemFontOfSize:24.0];
+    [self.deleteButton setTitle:@"◀︎" forState:UIControlStateNormal];
+    [self.deleteButton setTitleColor:[UIColor colorWithWhite:1.000 alpha:0.500] forState:UIControlStateHighlighted];
+    self.deleteButton.alpha = 0.0;
+    self.deleteButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    
+    self.digitsTextField = [UITextField new];
+    self.digitsTextField.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:38.0];
+    self.digitsTextField.adjustsFontSizeToFitWidth = YES;
+    self.digitsTextField.enabled = NO;
+    self.digitsTextField.textAlignment = NSTextAlignmentCenter;
+    self.digitsTextField.borderStyle = UITextBorderStyleNone;
+    
+    self.formatTextToPhoneNumber = YES;
+    self.numFormatter = [[NBAsYouTypeFormatter alloc] initWithRegionCode:@"US"];
+    _rawText = @"";
 }
 
 #pragma mark -

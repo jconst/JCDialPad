@@ -10,4 +10,6 @@
 
 @interface ExampleViewController : UIViewController <JCDialPadDelegate>
 
+@property (strong, nonatomic) JCDialPad *view;
+
 @end
