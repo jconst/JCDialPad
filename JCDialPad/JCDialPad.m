@@ -61,7 +61,6 @@
     self.deleteButton.titleLabel.font = [UIFont systemFontOfSize:24.0];
     [self.deleteButton setTitle:@"◀︎" forState:UIControlStateNormal];
     [self.deleteButton setTitleColor:[self.mainColor colorWithAlphaComponent:0.500] forState:UIControlStateHighlighted];
-    self.deleteButton.alpha = 0.0;
     self.deleteButton.hidden = YES;
     self.deleteButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     UIGestureRecognizer *holdRec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didHoldDeleteButton:)];
@@ -99,6 +98,9 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    for (UIView *subview in [self.contentView subviews]) {
+        [subview removeFromSuperview];
+    }
     [self performLayout];
 }
 
@@ -128,21 +130,14 @@
 	[_backgroundView removeFromSuperview];
 	_backgroundView = backgroundView;
 
-	if(_backgroundView == nil)
-	{
+	if(_backgroundView == nil) {
 		[self.backgroundBlurringView setHidden:YES];
-	}
-	else
-	{
-		if(self.backgroundBlurringView == nil)
-		{
-			if (IS_IOS6_OR_LOWER)
-			{
+	} else {
+		if(self.backgroundBlurringView == nil) {
+			if (IS_IOS6_OR_LOWER) {
                 self.backgroundBlurringView = [[UIView alloc] initWithFrame:self.bounds];
 				self.backgroundBlurringView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
-			}
-			else
-			{
+			} else {
 				self.backgroundBlurringView = [[UINavigationBar alloc] initWithFrame:self.bounds];
 				[(UINavigationBar*)self.backgroundBlurringView setBarStyle: UIBarStyleBlack];
 			}
@@ -185,6 +180,14 @@
     }
 }
 
+- (void)setShowDeleteButton:(BOOL)showDeleteButton
+{
+    _showDeleteButton = showDeleteButton;
+    if (!showDeleteButton) {
+        [self toggleDeleteButtonVisible:NO animated:YES];
+    }
+}
+
 - (void)appendText:(NSString *)text
 {
     if (text.length) {
@@ -212,6 +215,9 @@
         formatted = [self.numFormatter description];
     }
     self.digitsTextField.text = formatted;
+    if (!self.rawText.length) {
+        [self toggleDeleteButtonVisible:NO animated:YES];
+    }
 }
 
 - (void)didHoldDeleteButton:(UIGestureRecognizer *)holdRec
@@ -240,7 +246,7 @@
     }
 	
     CGFloat textFieldWidth = 250;
-    self.digitsTextField.frame = CGRectMake((self.correctWidth / 2) - (textFieldWidth / 2) - 10, top, textFieldWidth, 40);
+    self.digitsTextField.frame = CGRectMake((self.correctWidth / 2.0) - (textFieldWidth / 2.0), top, textFieldWidth, 40);
     [self.contentView addSubview:self.digitsTextField];
     
     self.deleteButton.frame = CGRectMake(self.digitsTextField.right + 2, self.digitsTextField.center.y - 10, top + 28, 20);
@@ -267,7 +273,7 @@
     CGFloat topRowTop                     = buttonAreaVertCenter - (buttonAreaHeight/2);
     
     CGFloat cellWidth                     = JCPadButtonWidth + horizontalButtonPadding;
-    CGFloat center                        = [self correctWidth]/2;
+    CGFloat center                        = [self correctWidth]/2.0;
     
     if (IS_IPAD) {
         topRowTop = highestTopAllowed + 24;
@@ -279,7 +285,7 @@
         NSInteger col = idx % 3;
         
         CGFloat top = topRowTop + (row * (btn.height+verticalButtonPadding));
-        CGFloat rowWidth = (btn.width * btnsInRow) + (horizontalButtonPadding * btnsInRow-1);
+        CGFloat rowWidth = (btn.width * btnsInRow) + (horizontalButtonPadding * (btnsInRow-1));
         
         CGFloat left = center - (rowWidth/2) + (cellWidth*col);
         [self setUpButton:btn left:left top:top];
@@ -296,7 +302,7 @@
 
 - (void)toggleDeleteButtonVisible:(BOOL)visible animated:(BOOL)animated
 {
-    if (!self.showDeleteButton)
+    if (!self.showDeleteButton && visible)
         return;
     
     if (self.deleteButton.hidden) {
