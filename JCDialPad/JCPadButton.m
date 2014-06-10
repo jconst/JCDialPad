@@ -3,6 +3,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define animationLength 0.15
+#define IS_IOS6_OR_LOWER (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1)
 
 @interface JCPadButton()
 
@@ -80,7 +81,7 @@
 - (void)setDefaultStyles
 {
     self.borderColor = [UIColor whiteColor];
-    self.selectedColor = [UIColor lightGrayColor];
+    self.selectedColor = [UIColor colorWithWhite:1.000 alpha:0.600];
     self.textColor = [UIColor whiteColor];
     self.hightlightedTextColor = [UIColor whiteColor];
 	
@@ -88,8 +89,7 @@
 	
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		if(NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_6_1)
-		{
+		if (IS_IOS6_OR_LOWER) {
 			fontName = @"HelveticaNeue";
 		}
 	});
