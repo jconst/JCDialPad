@@ -10,12 +10,13 @@
 
 @interface JCDialPad : UIView
 
-@property (nonatomic, strong) UIColor *labelColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIColor *mainColor UI_APPEARANCE_SELECTOR;
 
 @property (strong, nonatomic) NSString *rawText;
 @property (nonatomic) BOOL formatTextToPhoneNumber;
 
 @property (nonatomic, strong) UIView* backgroundView;
+@property (assign, nonatomic) BOOL showDeleteButton;
 
 @property (nonatomic, strong) NSArray *buttons;
 @property (nonatomic, strong) UIButton *deleteButton;

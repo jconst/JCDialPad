@@ -4,6 +4,7 @@
 #import "UIView+FrameAccessor.h"
 #import "NBAsYouTypeFormatter.h"
 
+#define DIV_ROUND_UP(N,D) ((N+D-1)/D)
 #define animationLength 0.3
 #define IS_IPHONE5 ([UIScreen mainScreen].bounds.size.height==568)
 #define IS_IOS6_OR_LOWER (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1)
@@ -22,8 +23,7 @@
 
 - (id)initWithFrame:(CGRect)frame buttons:(NSArray *)buttons
 {
-    self = [self initWithFrame:frame];
-    if (self)
+    if (self = [self initWithFrame:frame])
     {
         self.buttons = buttons;
     }
@@ -32,19 +32,16 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self)
-    {
+    if (self = [super initWithFrame:frame]) {
         [self initializeProperties];
+        self.frame = frame;
     }
     return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithCoder:aDecoder];
-    if (self)
-    {
+    if (self = [super initWithCoder:aDecoder]) {
         [self initializeProperties];
     }
     return self;
@@ -63,16 +60,23 @@
     [self.deleteButton addTarget:self action:@selector(didTapDeleteButton:) forControlEvents:UIControlEventTouchUpInside];
     self.deleteButton.titleLabel.font = [UIFont systemFontOfSize:24.0];
     [self.deleteButton setTitle:@"◀︎" forState:UIControlStateNormal];
-    [self.deleteButton setTitleColor:[UIColor colorWithWhite:1.000 alpha:0.500] forState:UIControlStateHighlighted];
+    [self.deleteButton setTitleColor:[self.mainColor colorWithAlphaComponent:0.500] forState:UIControlStateHighlighted];
     self.deleteButton.alpha = 0.0;
+    self.deleteButton.hidden = YES;
     self.deleteButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    UIGestureRecognizer *holdRec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didHoldDeleteButton:)];
+    [self.deleteButton addGestureRecognizer:holdRec];
     
     self.digitsTextField = [UITextField new];
-    self.digitsTextField.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:38.0];
+    self.digitsTextField.font = IS_IOS6_OR_LOWER
+                                ? [UIFont fontWithName:@"HelveticaNeue" size:38.0]
+                                : [UIFont fontWithName:@"HelveticaNeue-Thin" size:38.0];
     self.digitsTextField.adjustsFontSizeToFitWidth = YES;
     self.digitsTextField.enabled = NO;
     self.digitsTextField.textAlignment = NSTextAlignmentCenter;
+    self.digitsTextField.contentVerticalAlignment = UIViewContentModeCenter;
     self.digitsTextField.borderStyle = UITextBorderStyleNone;
+    self.digitsTextField.textColor = [self.mainColor colorWithAlphaComponent:0.9];
     
     self.formatTextToPhoneNumber = YES;
     self.rawText = @"";
@@ -80,11 +84,22 @@
 
 #pragma mark -
 #pragma mark - Lifecycle Methods
+
+- (void)setDefaultStyles
+{
+    self.frame = [[UIScreen mainScreen] bounds];
+    if (IS_IOS6_OR_LOWER) {
+        self.y += 20;
+        self.height -= 64;
+    }
+    self.mainColor = [UIColor whiteColor];
+    self.showDeleteButton = YES;
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     [self performLayout];
-	[self prepareAppearance];
 }
 
 #pragma mark -
@@ -143,7 +158,6 @@
 	}
 }
 
-#pragma mark -
 #pragma mark - Helper Methods
 - (void)didTapButton:(UIButton *)sender
 {
@@ -161,9 +175,13 @@
 {
     self.numFormatter = [[NBAsYouTypeFormatter alloc] initWithRegionCode:@"US"];
     _rawText = @"";
+    self.digitsTextField.text = @"";
     for (int i = 0; i < rawText.length; ++i) {
-        NSString *c = [self.rawText substringWithRange:NSMakeRange(i, 1)];
+        NSString *c = [rawText substringWithRange:NSMakeRange(i, 1)];
         [self appendText:c];
+    }
+    if (!self.rawText.length) {
+        [self toggleDeleteButtonVisible:NO animated:YES];
     }
 }
 
@@ -184,6 +202,9 @@
 
 - (void)didTapDeleteButton:(UIButton *)sender
 {
+    if (!self.rawText.length)
+        return;
+    
     _rawText = [self.rawText substringToIndex:self.rawText.length - 1];
     NSString *formatted = self.rawText;
     if (self.formatTextToPhoneNumber) {
@@ -191,28 +212,14 @@
         formatted = [self.numFormatter description];
     }
     self.digitsTextField.text = formatted;
-    
-    if (!self.rawText.length) {
-        [self toggleDeleteButtonVisible:NO animated:YES];
-    }
 }
 
-- (void)setDefaultStyles
+- (void)didHoldDeleteButton:(UIGestureRecognizer *)holdRec
 {
-    self.labelColor = [UIColor whiteColor];
+    self.rawText = @"";
 }
 
-- (void)prepareAppearance
-{
-	self.digitsTextField.textColor = [(JCPadButton*)self.buttons[0] borderColor];
-	
-	self.digitsTextField.text = @"";
-	
-    [self.deleteButton setTitleColor:self.labelColor forState:UIControlStateNormal];
-}
-
-#pragma mark -
-#pragma mark - Leyout Methods
+#pragma mark - Layout Methods
 - (void)performLayout
 {
     [self layoutTitleArea];
@@ -236,23 +243,34 @@
     self.digitsTextField.frame = CGRectMake((self.correctWidth / 2) - (textFieldWidth / 2) - 10, top, textFieldWidth, 40);
     [self.contentView addSubview:self.digitsTextField];
     
-    self.deleteButton.frame = CGRectMake(self.digitsTextField.right + 2, self.digitsTextField.center.y - 10, 50, 20);
+    self.deleteButton.frame = CGRectMake(self.digitsTextField.right + 2, self.digitsTextField.center.y - 10, top + 28, 20);
     [self.contentView addSubview:self.deleteButton];
 }
 
 - (void)layoutButtons
 {
-    CGFloat horizontalButtonPadding = 20;
-    CGFloat verticalButtonPadding = 7;
+    NSInteger count                       = self.buttons.count;
+    NSInteger numRows                     = DIV_ROUND_UP(count, 3);
+
+    const CGFloat bottomSpace             = IS_IOS6_OR_LOWER ? 36 : 60; //Leave room for tab bar if necessary
+    CGFloat highestTopAllowed             = self.digitsTextField.bottom + 4;
+    CGFloat maxButtonAreaHeight           = self.height - highestTopAllowed - bottomSpace;
+
+    const CGFloat horizontalButtonPadding = 20;
+    CGFloat totalButtonHeight             = numRows * JCPadButtonHeight;
+    CGFloat maxTotalPaddingHeight         = maxButtonAreaHeight - totalButtonHeight;
+    CGFloat verticalButtonPadding         = MIN(16, maxTotalPaddingHeight / (numRows-1));
+    CGFloat totalPaddingHeight            = verticalButtonPadding * (numRows-1);
     
-    CGFloat topRowTop = self.digitsTextField.bottom + 6;
-    NSInteger count = self.buttons.count;
-    CGFloat cellWidth = JCPadButtonWidth + horizontalButtonPadding;
-    CGFloat center = ([self correctWidth]/2);
+    CGFloat buttonAreaHeight              = totalPaddingHeight + totalButtonHeight;
+    CGFloat buttonAreaVertCenter          = highestTopAllowed + (maxButtonAreaHeight/2);
+    CGFloat topRowTop                     = buttonAreaVertCenter - (buttonAreaHeight/2);
     
-    if (IS_IPHONE5 || IS_IPAD) {
-        topRowTop += 15;
-        verticalButtonPadding += 3;
+    CGFloat cellWidth                     = JCPadButtonWidth + horizontalButtonPadding;
+    CGFloat center                        = [self correctWidth]/2;
+    
+    if (IS_IPAD) {
+        topRowTop = highestTopAllowed + 24;
     }
     
     [self.buttons enumerateObjectsUsingBlock:^(JCPadButton *btn, NSUInteger idx, BOOL *stop) {
@@ -278,6 +296,16 @@
 
 - (void)toggleDeleteButtonVisible:(BOOL)visible animated:(BOOL)animated
 {
+    if (!self.showDeleteButton)
+        return;
+    
+    if (self.deleteButton.hidden) {
+        self.deleteButton.alpha = 0;
+        self.deleteButton.hidden = NO;
+    } else {
+        self.deleteButton.alpha = 1;
+    }
+    
     __weak JCDialPad *weakSelf = self;
     [self performAnimations:^{
         weakSelf.deleteButton.alpha = visible;
