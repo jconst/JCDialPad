@@ -32,6 +32,7 @@
             UILabel *label = [self standardLabel];
             label.text = main;
             label.font = self.mainLabelFont;
+            label.contentMode = UIViewContentModeTop;
             label;
         });
         self.subLabel = ({
@@ -94,7 +95,7 @@
 		}
 	});
 	
-    self.mainLabelFont = [UIFont fontWithName:fontName size:35];
+    self.mainLabelFont = [UIFont fontWithName:fontName size:32];
     self.subLabelFont = [UIFont fontWithName:@"HelveticaNeue" size:10];
 }
 
@@ -182,5 +183,5 @@
 
 @end
 
-CGFloat const JCPadButtonHeight = 65;
-CGFloat const JCPadButtonWidth = 65;
+CGFloat const JCPadButtonHeight = 65.0;
+CGFloat const JCPadButtonWidth = 65.0;
