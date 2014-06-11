@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name         = "JCDialPad"
-  s.version      = "1.0.0"
-  s.summary      = "A phone dial pad view similar to the iOS 7 Phone app's Keypad view."
+  s.version      = "0.1.1"
+  s.summary      = "A customizable phone dial pad view similar to the iOS 7 Phone app's Keypad view."
 
   s.description  = "<<-DESC
-                     A phone dial pad view similar to the iOS 7 Phone app's Keypad view.
+                     A customizable phone dial pad view similar to the iOS 7 Phone app's Keypad view.
   
                      Based on ABPadLockScreen by Aron Bury.
                      DESC"
