@@ -1,38 +1,44 @@
-<p align="center" >
-  <img src="http://www.aronbury.com/assets/images/ab_logo.png" alt="ABLogo" title="ABLogo">
-</p>
+# JCDialPad
+JCDialPad is a customizable view which allows you to create button menus in the style of the iOS 7/8 keypad and pin pad views. Here are some examples of views created using JCDialPad:
 
-[![Build Status](https://travis-ci.org/abury/ABPadLockScreen.png)](https://travis-ci.org/abury/ABPadLockScreen)
+<img src="ss1.gif" width=60%></img>
+<img src="ss2.gif" width=60%></img>
+<img src="ss3.gif" width=60%></img>
 
-ABPadLockScreen aims to provide a universal solution to providing a  secure keypad/pin lock screen to your iPhone or iPad app. With just a few lines you can have a full lock screen module ready to go.
 
 ## Features
-- Supports iPhone and iPad
-- Allows the user to set their PIN
-- Optional PIN entry limit
-- Optional cancel button
-- Optional text modification
-- Optional pin length (default is 4)
-- Full appearance customisation
+- Fully customizable buttons with useful defaults
+- Automatically format phone numbers as you type
+- Set a background image with a frosted overlay
+- Handle button presses in multiple different ways using one simple delegate method
+- Buttons are automatically laid out in centered rows of three
+- Most colors and fonts can be customized using UIAppearance, or set directly
 
-<img src="http://www.aronbury.com/assets/images/abpadlockscreen/fb-blue.png" width=50% alt="screenshot" title="screenshot">
-
-## Installation with Cocoapods
+## Installation
 [CocoaPods](http://cocoapods.org) is the easiest way to manage your iOS/OSX dependencies. Check out their getting started guide to see how to set it up.
 If you have cocoapods setup on your machine, simply set the spec like this:
 
 #### Podfile
 ```ruby
 platform :ios, '6.0'
-pod "ABPadLockScreen", "~> 3.1.0"
+pod "JCDialPad", "~> 0.1.0"
 ```
-The earliest version of this framework that supports cocoapods is 3.0.0
 
-## Customising the Appearance
-The module is entirely customisable through UIAppearance. All colours and fonts used within the module can be set using the UIAppearance proxy. The example project shows how to do this, but for a more in depth look at UIAppearance check out the docs [check out the docs](https://developer.apple.com/library/ios/documentation/uikit/reference/UIAppearance_Protocol/Reference/Reference.html) or check out [Matt Thompson’s article on NSHipster](http://nshipster.com/uiappearance/)
+## Usage
 
-<img src="http://aronbury.com/assets/images/abpadlockscreen/custom_red.jpg" width=50% alt="Custom Text" title="Custom Text">
-<img src="http://www.aronbury.com/assets/images/abpadlockscreen/gray-locked.png" width=50% alt="Locked out" title="Locked out">
+Creating a standard keypad view with buttons 1-9, *, and # is as simple as this:
+
+```objectivec
+JCDialPad *pad = [[JCDialPad alloc] initWithFrame:self.view.bounds];
+pad.buttons = [JCDialPad defaultButtons];
+pad.delegate = self;
+[self.view addSubview:pad];
+```
+
+Check out the Demo project to get a sense of how to create more complex views, add a background image, and create your own buttons using images or iconic fonts.
+
+### Customising the Appearance
+The module is entirely customisable through UIAppearance. Most colours and fonts used within the module can be set using the UIAppearance proxy. The example project shows how to do this, but for a more in depth look at UIAppearance check out the docs [check out the docs](https://developer.apple.com/library/ios/documentation/uikit/reference/UIAppearance_Protocol/Reference/Reference.html) or check out [Matt Thompson’s article on NSHipster](http://nshipster.com/uiappearance/)
 
 ## License
-ABPadLockScreen is available under the MIT license. See the LICENSE file for more info.
+JCDialPad is available under the MIT license. See the LICENSE file for more info.
