@@ -1,9 +1,8 @@
 # JCDialPad
 JCDialPad is a customizable view which allows you to create button menus in the style of the iOS 7/8 keypad and pin pad views. Here are some examples of views created using JCDialPad:
 
-<img src="ss1.png" width=60%></img>
-<img src="ss2.png" width=60%></img>
-<img src="ss3.png" width=60%></img>
+<img src="ss1.png" width=40% /> &nbsp; <img src="ss2.png" width=40% />
+<img src="ss3.png" width=40% /> &nbsp; <img src="ss4.png" width=40% />
 
 
 ## Features
