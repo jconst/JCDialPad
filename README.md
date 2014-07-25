@@ -12,15 +12,13 @@ JCDialPad is a customizable view which allows you to create button menus in the 
 - Handle button presses in multiple different ways using one simple delegate method
 - Buttons are automatically laid out in centered rows of three
 - Most colors and fonts can be customized using UIAppearance, or set directly
+- Scales properly on all device sizes including iPad
 
 ## Installation
-[CocoaPods](http://cocoapods.org) is the easiest way to manage your iOS/OSX dependencies. Check out their getting started guide to see how to set it up.
-If you have cocoapods setup on your machine, simply set the spec like this:
+[CocoaPods](http://cocoapods.org) is the easiest way to manage your iOS/OSX dependencies. Check out their getting started guide to see how to set it up. Once you do, simply add this line to your podfile:
 
-#### Podfile
 ```ruby
-platform :ios, '6.0'
-pod "JCDialPad", "~> 0.1.0"
+pod "JCDialPad"
 ```
 
 ## Usage
@@ -37,7 +35,13 @@ pad.delegate = self;
 Check out the Demo project to get a sense of how to create more complex views, add a background image, and create your own buttons using images or iconic fonts.
 
 ### Customising the Appearance
-The module is entirely customisable through UIAppearance. Most colours and fonts used within the module can be set using the UIAppearance proxy. The example project shows how to do this, but for a more in depth look at UIAppearance check out the docs [check out the docs](https://developer.apple.com/library/ios/documentation/uikit/reference/UIAppearance_Protocol/Reference/Reference.html) or check out [Matt Thompson’s article on NSHipster](http://nshipster.com/uiappearance/)
+The module is entirely customisable through UIAppearance. Most colours and fonts used within the module can be set using the UIAppearance proxy. The example project shows how to do this, but for a more in depth look at UIAppearance check out the docs [check out the docs](https://developer.apple.com/library/ios/documentation/uikit/reference/UIAppearance_Protocol/Reference/Reference.html) or check out [Matt Thompson’s article on NSHipster](http://nshipster.com/uiappearance/).
+
+## Known Issues
+
+- Crazy stuff happens in landscape mode.
+- Buttons just start to run off the screen if you add too many. Not sure what the best choice would be to do in this case.
+- I would really like to get the actual iOS 7 phone keypad visual styling – where the frosted overlay is white, and pressing the buttons actually makes them become more translucent, revealing the colors of the background image.
 
 ## License
 JCDialPad is available under the MIT license. See the LICENSE file for more info.
