@@ -35,7 +35,7 @@ pad.delegate = self;
 Check out the Demo project to get a sense of how to create more complex views, add a background image, and create your own buttons using images or iconic fonts.
 
 ### Customising the Appearance
-The module is entirely customisable through UIAppearance. Most colours and fonts used within the module can be set using the UIAppearance proxy. The example project shows how to do this, but for a more in depth look at UIAppearance check out the docs [check out the docs](https://developer.apple.com/library/ios/documentation/uikit/reference/UIAppearance_Protocol/Reference/Reference.html) or check out [Matt Thompson’s article on NSHipster](http://nshipster.com/uiappearance/).
+Most colours and fonts used within the module can be set using the UIAppearance proxy. The example project shows how to do this, but for a more in depth look at UIAppearance check out the docs [check out the docs](https://developer.apple.com/library/ios/documentation/uikit/reference/UIAppearance_Protocol/Reference/Reference.html) or check out [Matt Thompson’s article on NSHipster](http://nshipster.com/uiappearance/).
 
 ## Known Issues
 
