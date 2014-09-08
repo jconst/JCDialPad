@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9C79B0D3188A184A00D465D8"
-               BuildableName = "ABPadLockScreenDemo.app"
-               BlueprintName = "ABPadLockScreenDemo"
-               ReferencedContainer = "container:ABPadLockScreenDemo.xcodeproj">
+               BuildableName = "JCDialPadDemo.app"
+               BlueprintName = "JCDialPadDemo"
+               ReferencedContainer = "container:JCDialPadDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9C79B189188A1A7100D465D8"
-               BuildableName = "ABPadLockScreenDemoTests.xctest"
-               BlueprintName = "ABPadLockScreenDemoTests"
-               ReferencedContainer = "container:ABPadLockScreenDemo.xcodeproj">
+               BuildableName = "JCDialPadDemoTests.xctest"
+               BlueprintName = "JCDialPadDemoTests"
+               ReferencedContainer = "container:JCDialPadDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9C79B189188A1A7100D465D8"
-               BuildableName = "ABPadLockScreenDemoTests.xctest"
-               BlueprintName = "ABPadLockScreenDemoTests"
-               ReferencedContainer = "container:ABPadLockScreenDemo.xcodeproj">
+               BuildableName = "JCDialPadDemoTests.xctest"
+               BlueprintName = "JCDialPadDemoTests"
+               ReferencedContainer = "container:JCDialPadDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -90,9 +90,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C79B0D3188A184A00D465D8"
-            BuildableName = "ABPadLockScreenDemo.app"
-            BlueprintName = "ABPadLockScreenDemo"
-            ReferencedContainer = "container:ABPadLockScreenDemo.xcodeproj">
+            BuildableName = "JCDialPadDemo.app"
+            BlueprintName = "JCDialPadDemo"
+            ReferencedContainer = "container:JCDialPadDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

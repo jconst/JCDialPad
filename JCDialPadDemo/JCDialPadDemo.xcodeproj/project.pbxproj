@@ -29,7 +29,7 @@
 			containerPortal = 9C79B0CC188A184A00D465D8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9C79B0D3188A184A00D465D8;
-			remoteInfo = ABPadLockScreenDemo;
+			remoteInfo = JCDialPadDemo;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -123,7 +123,7 @@
 				9C79B0DE188A184A00D465D8 /* Supporting Files */,
 			);
 			name = JCDialPadDemo;
-			path = ABPadLockScreenDemo;
+			path = JCDialPadDemo;
 			sourceTree = "<group>";
 		};
 		9C79B0DE188A184A00D465D8 /* Supporting Files */ = {
@@ -173,7 +173,7 @@
 			dependencies = (
 			);
 			name = JCDialPadDemo;
-			productName = ABPadLockScreenDemo;
+			productName = JCDialPadDemo;
 			productReference = 9C79B0D4188A184A00D465D8 /* JCDialPadDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -191,7 +191,7 @@
 				9C79B198188A1A7100D465D8 /* PBXTargetDependency */,
 			);
 			name = JCDialPadDemoTests;
-			productName = "ABPadLockScreenDemo Tests";
+			productName = "JCDialPadDemo Tests";
 			productReference = 9C79B18A188A1A7100D465D8 /* JCDialPadDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -417,19 +417,19 @@
 		9C79B19A188A1A7100D465D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ABPadLockScreenDemo.app/ABPadLockScreenDemo";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JCDialPadDemo.app/JCDialPadDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ABPadLockScreenDemo Tests/JCDialPadDemo Tests-Prefix.pch";
+				GCC_PREFIX_HEADER = "JCDialPadDemo Tests/JCDialPadDemo Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "ABPadLockScreenDemo Tests/JCDialPadDemo Tests-Info.plist";
+				INFOPLIST_FILE = "JCDialPadDemo Tests/JCDialPadDemo Tests-Info.plist";
 				PRODUCT_NAME = JCDialPadDemoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -439,15 +439,15 @@
 		9C79B19B188A1A7100D465D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ABPadLockScreenDemo.app/ABPadLockScreenDemo";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JCDialPadDemo.app/JCDialPadDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ABPadLockScreenDemo Tests/JCDialPadDemo Tests-Prefix.pch";
-				INFOPLIST_FILE = "ABPadLockScreenDemo Tests/JCDialPadDemo Tests-Info.plist";
+				GCC_PREFIX_HEADER = "JCDialPadDemo Tests/JCDialPadDemo Tests-Prefix.pch";
+				INFOPLIST_FILE = "JCDialPadDemo Tests/JCDialPadDemo Tests-Info.plist";
 				PRODUCT_NAME = JCDialPadDemoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
