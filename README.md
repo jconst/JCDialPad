@@ -7,9 +7,9 @@ JCDialPad is a customizable view which allows you to create button menus in the 
 
 ## Features
 - Fully customizable buttons with useful defaults
-- Automatically format phone numbers as you type
+- Automatically format phone numbers as you type with any region supported by libPhoneNumber
 - Set a background image with a frosted overlay
-- Handle button presses in multiple different ways using one simple delegate method
+- Handle button presses (both long and short) in multiple different ways using two simple delegate methods
 - Buttons are automatically laid out in centered rows of three
 - Most colors and fonts can be customized using UIAppearance, or set directly
 - Scales properly on all device sizes including iPad
