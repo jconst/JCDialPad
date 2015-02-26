@@ -119,6 +119,8 @@
             button.input = @"*";
         } else if ([main isEqualToString:@"＃"]) {
             button.input = @"#";
+        } else if ([main isEqualToString:@"0"]) {
+            button.longPressInput = @"+";
         }
         [ret addObject:button];
     }];
@@ -166,6 +168,18 @@
         }
     }
 }
+
+-(void)didHoldButton:(UILongPressGestureRecognizer *)recognizer
+{
+    if (recognizer.state != UIGestureRecognizerStateBegan)
+        return;
+    JCPadButton *button = (JCPadButton *)recognizer.view;
+    if (![self.delegate respondsToSelector:@selector(dialPad:shouldInsertText:forLongButtonPress:)] ||
+        [self.delegate dialPad:self shouldInsertText:button.longPressInput forLongButtonPress:button]) {
+        [self appendText:button.longPressInput];
+    }
+}
+
 
 - (void)setRawText:(NSString *)rawText
 {
@@ -297,6 +311,12 @@
 {
     button.frame = CGRectMake(left, top, JCPadButtonWidth, JCPadButtonHeight);
     [button addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIGestureRecognizer *rec = [[UILongPressGestureRecognizer alloc]
+                                initWithTarget:self
+                                        action:@selector(didHoldButton:)];
+    [button addGestureRecognizer:rec];
+    
     [self.contentView addSubview:button];
     [self setRoundedView:button toDiameter:JCPadButtonHeight];
 }

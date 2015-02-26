@@ -8,7 +8,8 @@
 - (instancetype)initWithMainLabel:(NSString *)main subLabel:(NSString *)sub;
 - (instancetype)initWithInput:(NSString *)input iconView:(UIView *)iconView subLabel:(NSString *)sub;
 
-@property (strong, nonatomic) NSString *input;
+@property (nonatomic, copy) NSString *input;
+@property (nonatomic, copy) NSString *longPressInput;
 @property (nonatomic, strong) UIView *iconView;
 @property (nonatomic, strong) UILabel *mainLabel;
 @property (nonatomic, strong) UILabel *subLabel;

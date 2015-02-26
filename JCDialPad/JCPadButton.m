@@ -26,7 +26,8 @@
         [self setDefaultStyles];
         
         self.input = main;
-        self.accessibilityValue = [@"PinButton" stringByAppendingString:main];
+        self.longPressInput = @"";
+        self.accessibilityValue = [@"PhoneButton" stringByAppendingString:main];
         self.layer.borderWidth = 1.5f;
         self.mainLabel = ({
             UILabel *label = [self standardLabel];
@@ -150,13 +151,23 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesEnded:touches withEvent:event];
+    [self fadeOut];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self fadeOut];
+}
+
+- (void)fadeOut
+{
     __weak JCPadButton *weakSelf = self;
     [UIView animateWithDuration:animationLength
                           delay:0.0f
                         options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionAllowUserInteraction
                      animations:^{
-                         weakSelf.selectedView.alpha = 0.0f;
-                         [weakSelf setHighlighted:NO];
+        weakSelf.selectedView.alpha = 0.0f;
+        [weakSelf setHighlighted:NO];
     } completion:nil];
 }
 
