@@ -12,7 +12,8 @@
 
 @property (nonatomic, strong) UIColor *mainColor UI_APPEARANCE_SELECTOR;
 
-@property (strong, nonatomic) NSString *rawText;
+@property (nonatomic, copy) NSString *rawText;
+@property (nonatomic, copy) NSString *regionCode;
 @property (nonatomic) BOOL formatTextToPhoneNumber;
 
 @property (nonatomic, strong) UIView* backgroundView;
