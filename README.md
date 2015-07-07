@@ -4,7 +4,7 @@ JCDialPad is a customizable view which allows you to create button menus in the 
 <img src="ss1.png" width=35% /> &nbsp; <img src="ss2.png" width=35% />
 <img src="ss3.png" width=35% /> &nbsp; <img src="ss4.png" width=35% />
 
-*Note: If you're looking for more than just the UI elements and want a full VoIP phone inside your iOS app, check out my other library [PhoneKit](https://github.com/jconst/PhoneKit]!*
+*Note: If you're looking for more than just the UI elements and want a full VoIP phone inside your iOS app, check out my other library [PhoneKit](https://github.com/jconst/PhoneKit)!*
 
 ## Features
 - Fully customizable buttons with useful defaults
